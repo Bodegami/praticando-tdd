@@ -1,15 +1,16 @@
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
-public class PilhaTest {
-	
+public class PilhaTest2 {
+
 	private Pilha p;
 	
-	@BeforeEach
+	@Before
 	public void inicializaPilha() {
 		p = new Pilha(10);
 	}
@@ -39,5 +40,23 @@ public class PilhaTest {
 		assertEquals(1, p.tamanho());
 		assertEquals("primeiro", p.topo());
 		assertEquals("segundo", desempilhado);
+		
+	}
+	
+	@Test(expected = PilhaVaziaException.class)
+	public void removeDaPilhaVazia() {
+		p.desempilha();
+	}
+	
+	@Test
+	public void adicionaNaPilhaCheia() {
+		for(int i = 0; i < 10; i++) {
+			p.empilha("elemento " + i);
+		}
+		try {
+			p.empilha("boom");
+			fail();
+		} catch (PilhaCheiaException e) { }
 	}
 }
+
