@@ -2,11 +2,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class PilhaTest {
+public class PilhaTest {
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	public void pilhaVazia() {
+		Pilha p = new Pilha();
+		assertTrue(p.estaVazia());
+		assertEquals(0, p.tamanho());
 	}
-
+	
+	@Test
+	public void empilhaUmElemento() {
+		Pilha p = new Pilha();
+		p.empilha("primeiro");
+		assertFalse(p.estaVazia());
+		assertEquals(1, p.tamanho());
+		assertEquals("primeiro", p.topo());
+	}
 }
